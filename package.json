@@ -1,6 +1,6 @@
 {
   "name": "restful-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An utility class to validate RESTful api parameters, generate and handle errors in web service.",
   "main": "lib/index.js",
   "scripts": {
@@ -42,7 +42,8 @@
   "dependencies": {
     "decamelize": "^3.0.0",
     "http-status-codes": "^1.3.2",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "validator": "^10.11.0"
   },
   "repository": {
     "type": "git",
