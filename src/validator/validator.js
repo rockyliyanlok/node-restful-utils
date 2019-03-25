@@ -34,6 +34,7 @@ class Validator {
   }
 
   body (req, param) { 
+    req.body = req.body || {}
     this.error.push(this.task.error())
     this.task.set({ 
       location: 'body', 
@@ -44,6 +45,7 @@ class Validator {
   }
 
   query (req, param) { 
+    req.query = req.query || {}
     this.error.push(this.task.error())
     this.task.set({ 
       location: 'query', 
@@ -54,6 +56,7 @@ class Validator {
   }
 
   params (req, param) { 
+    req.params = req.params || {}
     this.error.push(this.task.error())
     this.task.set({ 
       location: 'params', 

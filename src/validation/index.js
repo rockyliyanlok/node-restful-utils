@@ -3,7 +3,6 @@
 const check = require('../validator')
 
 const retrieveValidation = req => {
-  check.query(req, 'order_direction').isIn(['asc', 'desc', 'ASC', 'DESC'])
   check.query(req, 'before').isInt()
   check.query(req, 'after').isInt()
   check.query(req, 'limit').isInt()
