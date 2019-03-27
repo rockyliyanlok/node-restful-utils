@@ -1,3 +1,7 @@
+1.0.4 / Mar 28, 2019
+==================
+  * Changed error message method name
+
 1.0.3 / Mar 28, 2019
 ==================
   * Fixed typo for validate custom exception
