@@ -336,7 +336,7 @@ class Validator {
   
   custom (func) {
     if (!_.isNil(this.task.value) && !func(this.task.value)) {
-      this.task.msg = erroMessage.invalid(this.task.param)
+      this.task.msg = message.invalid(this.task.param)
     }
     return this
   }
