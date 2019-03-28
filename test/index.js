@@ -226,16 +226,6 @@ describe('retrieve validation', () => {
     ].join(' '))
   })
 
-  it(`should returns BadRequestError with order_direction isIn() error`, async () => {
-    const response = await chai.request(app)
-      .get('/retrieve-validation')
-      .query({ order_direction: 'abcde' })
-    checkGeneralError(response, HttpStatus.BAD_REQUEST, false)
-    expect(response.body.error_description).to.equal([
-      Restful.errorMessage.isIn('order_direction', ['asc', 'desc', 'ASC', 'DESC'])
-    ].join(' '))
-  })
-
 })
 
 describe('update validation', () => {
