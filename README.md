@@ -20,6 +20,7 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const Restful = require('restful-utils');
+const { findAllValidation, updateValidation, deleteValidation } = Restful.middleware;
 
 const app = express();
 app.use(bodyParser.json());
@@ -69,6 +70,10 @@ app.get('/retrieve-validation', async (req, res, next) => {
   res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
 })
 
+app.get('/retrieve-validation-middleware', findAllValidation, async (req, res, next) => {
+  res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
+})
+
 app.post(['/update-validation', '/update-validation/:uid'], async (req, res, next) => {
   Restful.updateValidation(req)
   const errors = check.validationResult()
@@ -76,10 +81,18 @@ app.post(['/update-validation', '/update-validation/:uid'], async (req, res, nex
   res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
 })
 
+app.post(['/update-validation-middleware', '/update-validation-middleware/:uid'], updateValidation, async (req, res, next) => {
+  res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
+})
+
 app.delete(['/delete-validation', '/delete-validation/:uid'], async (req, res, next) => {
   Restful.deleteValidation(req)
   const errors = check.validationResult()
   if (!errors.isEmpty()) return next(new Restful.BadRequestError(errors.array()))
+  res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
+})
+
+app.delete(['/delete-validation-middleware', '/delete-validation-middleware/:uid'], deleteValidation, async (req, res, next) => {
   res.status(HttpStatus.OK).json({ code: HttpStatus.OK })
 })
 

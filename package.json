@@ -1,6 +1,6 @@
 {
   "name": "restful-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "An utility class to validate RESTful api parameters, generate and handle errors in web service.",
   "main": "lib/index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "chai-http": "^4.2.1",
     "chai-string": "^1.5.0",
     "express": "^4.16.4",
-    "mocha": "^6.0.2"
+    "mocha": "^6.1.4"
   },
   "dependencies": {
     "decamelize": "^3.0.0",

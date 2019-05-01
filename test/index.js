@@ -226,6 +226,28 @@ describe('retrieve validation', () => {
     ].join(' '))
   })
 
+  it(`should returns BadRequestError with before & after isInt() error (middleware)`, async () => {
+    const response = await chai.request(app)
+      .get('/retrieve-validation-middleware')
+      .query({ before: 'abcde', after: 'abcde' })
+    checkGeneralError(response, HttpStatus.BAD_REQUEST, false)
+    expect(response.body.error_description).to.equal([
+      Restful.errorMessage.isInt('before'), 
+      Restful.errorMessage.isInt('after')
+    ].join(' '))
+  })
+
+  it(`should returns BadRequestError with limit & offset isInt() error (middleware)`, async () => {
+    const response = await chai.request(app)
+      .get('/retrieve-validation-middleware')
+      .query({ limit: 'abcde', offset: 'abcde' })
+    checkGeneralError(response, HttpStatus.BAD_REQUEST, false)
+    expect(response.body.error_description).to.equal([
+      Restful.errorMessage.isInt('limit'), 
+      Restful.errorMessage.isInt('offset')
+    ].join(' '))
+  })
+
 })
 
 describe('update validation', () => {
@@ -239,6 +261,15 @@ describe('update validation', () => {
     expect(response.body.error_description).to.equal(Restful.errorMessage.exists('uid'))
   })
 
+  it(`should returns BadRequestError with uid exists() error (middleware)`, async () => {
+    const response = await chai.request(app)
+      .post('/update-validation-middleware')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send({ })
+    checkGeneralError(response, HttpStatus.BAD_REQUEST, false)
+    expect(response.body.error_description).to.equal(Restful.errorMessage.exists('uid'))
+  })
+
 })
 
 describe('delete validation', () => {
@@ -246,6 +277,15 @@ describe('delete validation', () => {
   it(`should returns BadRequestError with uid exists() error`, async () => {
     const response = await chai.request(app)
       .delete('/delete-validation')
+      .set('content-type', 'application/x-www-form-urlencoded')
+      .send({ })
+    checkGeneralError(response, HttpStatus.BAD_REQUEST, false)
+    expect(response.body.error_description).to.equal(Restful.errorMessage.exists('uid'))
+  })
+
+  it(`should returns BadRequestError with uid exists() error (middleware)`, async () => {
+    const response = await chai.request(app)
+      .delete('/delete-validation-middleware')
       .set('content-type', 'application/x-www-form-urlencoded')
       .send({ })
     checkGeneralError(response, HttpStatus.BAD_REQUEST, false)

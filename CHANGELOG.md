@@ -1,3 +1,7 @@
+1.0.6 / May 2, 2019
+==================
+  * Created validation middleware
+
 1.0.5 / Mar 28, 2019
 ==================
   * Updated to remove order_direction check and test script
